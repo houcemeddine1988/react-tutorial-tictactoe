@@ -1,14 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
+
 type squareProps = {
   value: string;
 };
-function Square(props: squareProps) {
+function Square() {
+  const [value, setValue] = useState('');
   function handleClick() {
-    console.log('clicked !');
+    setValue('X');
   }
   return (
     <button className="square" onClick={handleClick}>
-      {props.value}
+      {value}
     </button>
   );
 }
@@ -17,19 +20,19 @@ export default function Board() {
   return (
     <>
       <div className="board-row">
-        <Square value="1" />
-        <Square value="1" />
-        <Square value="1" />
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square value="1" />
-        <Square value="1" />
-        <Square value="1" />
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square value="1" />
-        <Square value="1" />
-        <Square value="1" />
+        <Square />
+        <Square />
+        <Square />
       </div>
     </>
   );
