@@ -2,76 +2,75 @@ import React from 'react';
 import { useState } from 'react';
 import { Square } from './Square';
 
-type boardState = {
+type tBoardProps = {
   squares: Array<string>;
   xIsNext: boolean;
+  onPlay: (squares:string[])=>void
 };
 
-export default function Board() {
-  const [boardstate, setboardstate] = useState<boardState>({
-    squares: Array<string>(9).fill(''),
-    xIsNext: true,
-  });
+export default function Board(props:tBoardProps) {
+  
   function handleClick(i: number) {
-    if (boardstate.squares[i] != '' || calculateWinner(boardstate.squares)) {
+    if (props.squares[i] != '' || calculateWinner(props.squares)) {
       return;
     }
-    const nextSquares = boardstate.squares.slice();
+    const nextSquares = props.squares.slice();
 
-    if (boardstate.xIsNext) {
+    if (props.xIsNext) {
       nextSquares[i] = 'X';
-    } else nextSquares[i] = 'O';
-    setboardstate({ squares: nextSquares, xIsNext: !boardstate.xIsNext });
+    } else {nextSquares[i] = 'O';}
+    props.onPlay(nextSquares)
+    
   }
-  let winner = calculateWinner(boardstate.squares);
+  let winner = calculateWinner(props.squares);
   let status: string;
   if (winner) {
     status = 'the winner is: ' + winner;
   } else {
-    status = 'Next player: ' + (boardstate.xIsNext ? 'X' : 'O');
+    status = 'Next player: ' + (props.xIsNext ? 'X' : 'O');
   }
   return (
     <>
       <div className="status">{status}</div>
       <div className="board-row">
         <Square
-          value={boardstate.squares[0]}
+          value={props.squares[0]}
           onSquareClicked={() => handleClick(0)}
         />
         <Square
-          value={boardstate.squares[1]}
+          value={props.squares[1]}
           onSquareClicked={() => handleClick(1)}
         />
         <Square
-          value={boardstate.squares[2]}
+          value={props.squares[2]}
           onSquareClicked={() => handleClick(2)}
         />
       </div>
       <div className="board-row">
         <Square
-          value={boardstate.squares[3]}
+          value={props.squares[3]}
           onSquareClicked={() => handleClick(3)}
         />
         <Square
-          value={boardstate.squares[4]}
+          value={props.squares[4]}
           onSquareClicked={() => handleClick(4)}
         />
         <Square
-          value={boardstate.squares[5]}
+          value={props.squares[5]}
           onSquareClicked={() => handleClick(5)}
         />
       </div>
       <div className="board-row">
         <Square
-          value={boardstate.squares[6]}
+          value={props.squares[6]}
           onSquareClicked={() => handleClick(6)}
         />
         <Square
-          value={boardstate.squares[7]}
+          value={props.squares[7]}
           onSquareClicked={() => handleClick(7)}
         />
         <Square
-          value={boardstate.squares[8]}
+          value={props.squares[8]}
           onSquareClicked={() => handleClick(8)}
         />
       </div>
