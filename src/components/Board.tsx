@@ -1,21 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { Square } from './Square';
 
 type boardState = {
   squares: Array<string>;
   xIsNext: boolean;
 };
-type squareProps = {
-  value: string;
-  onSquareClicked: () => void;
-};
-function Square(props: squareProps) {
-  return (
-    <button className="square" onClick={props.onSquareClicked}>
-      {props.value}
-    </button>
-  );
-}
 
 export default function Board() {
   const [boardstate, setboardstate] = useState<boardState>({
@@ -42,7 +32,7 @@ export default function Board() {
   }
   return (
     <>
-      <div>{status}</div>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square
           value={boardstate.squares[0]}
@@ -89,7 +79,7 @@ export default function Board() {
   );
 }
 
-function calculateWinner(squares: any) {
+function calculateWinner(squares: string[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

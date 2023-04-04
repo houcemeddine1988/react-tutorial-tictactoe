@@ -1,12 +1,12 @@
 import Layout from "@/src/components/Layout"
-import Square from "@/src/components/app"
+import Board from "@/src/components/Board"
 
 
 
 export default function Home() {
   return (
     <Layout>
-      <Square/>
+      <Board/>
     </Layout>      
   )
 }
