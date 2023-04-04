@@ -1,22 +1,35 @@
-import React from 'react'
+import React from 'react';
+type squareProps = {
+  value: string;
+};
+function Square(props: squareProps) {
+  function handleClick() {
+    console.log('clicked !');
+  }
+  return (
+    <button className="square" onClick={handleClick}>
+      {props.value}
+    </button>
+  );
+}
 
-export default function Square() {
+export default function Board() {
   return (
     <>
       <div className="board-row">
-        <button className="square">1</button>
-        <button className="square">2</button>
-        <button className="square">3</button>
+        <Square value="1" />
+        <Square value="1" />
+        <Square value="1" />
       </div>
       <div className="board-row">
-        <button className="square">4</button>
-        <button className="square">5</button>
-        <button className="square">6</button>
+        <Square value="1" />
+        <Square value="1" />
+        <Square value="1" />
       </div>
       <div className="board-row">
-        <button className="square">7</button>
-        <button className="square">8</button>
-        <button className="square">9</button>
+        <Square value="1" />
+        <Square value="1" />
+        <Square value="1" />
       </div>
     </>
   );
